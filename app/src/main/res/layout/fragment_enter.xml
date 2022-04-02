@@ -5,26 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EnterFragment"
-    android:background="@color/green_bg">
+    android:background="@color/background_main">
 
+    <TextView
+        android:id="@+id/preview_top_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/preview_top"
+        android:textColor="@color/indigo"
+        android:paddingTop="2dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/special_elite_regular"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lessons_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/item_lessons_view">
+        app:layout_constraintTop_toBottomOf="@+id/preview_top_tv"
+        app:layout_constraintBottom_toTopOf="@+id/preview_bottom_tv"
+        tools:listitem="@layout/item_lessons_view"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
+    <TextView
+        android:id="@+id/preview_bottom_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="4dp"
+        android:text="@string/preview_bottom"
+        android:textSize="24sp"
+        android:textColor="@color/indigo"
+        android:fontFamily="@font/libre_barcode_39_text_regular"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/dark_violet"
         android:src="@drawable/icon_upload_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

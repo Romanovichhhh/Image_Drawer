@@ -18,7 +18,16 @@ class EnterFragmentVM(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ imageList ->
-                imageList.map {
+                val testList = imageList.toMutableList()
+                testList.addAll(imageList)
+                testList.addAll(imageList)
+                testList.addAll(imageList)
+                testList.addAll(imageList)
+                testList.addAll(imageList)
+                testList.addAll(imageList)
+                testList.addAll(imageList)
+                testList.addAll(imageList)
+                testList.map {
                     SingleLessonItemVM(it) { vm ->
                         navigateToResult(vm.id)
                     }

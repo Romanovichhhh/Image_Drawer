@@ -51,14 +51,13 @@ class Api private constructor(context: Context) {
 
         fun okHttpClient(): OkHttpClient {
             val builder = OkHttpClient.Builder()
-            val httpClient = builder
+            return builder
                 .addInterceptor(
                     HttpLoggingInterceptor().setLevel(
                         HttpLoggingInterceptor.Level.BODY
                     )
                 )
                 .build()
-            return httpClient
         }
 
         @JvmStatic
@@ -68,6 +67,17 @@ class Api private constructor(context: Context) {
                 .host(serverHost)
                 .port(port)
                 .build()
+        }
+
+        private val baseUrlMedia by lazy {
+            Uri.Builder()
+                .scheme(scheme)
+                .authority(serverHost)
+        }
+
+        fun mediaUrlString(path: String): String {
+            val root = "$baseUrlMedia:$port/"
+            return root + path
         }
 
         val main: MainService by lazy { getInstanceOrFail().retrofit.make() }
