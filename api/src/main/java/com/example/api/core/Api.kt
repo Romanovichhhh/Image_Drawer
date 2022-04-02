@@ -1,6 +1,8 @@
 package com.example.api.core
 
 import android.content.Context
+import android.net.Uri
+import com.example.api.R
 import com.example.api.helper.HasStringValueConverterFactory
 import com.example.api.helper.SingletonHolder
 import com.example.api.main.MainService
@@ -14,9 +16,18 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Api private constructor(context: Context) {
+
+    init {
+        val sharedPreferences = context.getSharedPreferences(
+            context.getString(R.string.en_app_s),
+            Context.MODE_PRIVATE
+        )
+        SessionManager.init(sharedPreferences)
+    }
+
     private val retrofit: Retrofit by lazy { makeRetrofit() }
+
     private fun makeRetrofit(): Retrofit {
-        canChangeServerHostName = false
         val httpClient = okHttpClient()
 
         val gsonConverterFactory = GsonConverterFactory.create(
@@ -34,10 +45,9 @@ class Api private constructor(context: Context) {
     }
 
     companion object : SingletonHolder<Context, Api>(::Api) {
-        private const val scheme = "https"
-        private var serverHost = "server.com"
-        private var canChangeServerHostName = true
-        private const val apiPath = "/api/v1/"
+        private const val scheme = "http"
+        private var serverHost = "62.113.102.194"
+        private var port = 8000
 
         fun okHttpClient(): OkHttpClient {
             val builder = OkHttpClient.Builder()
@@ -56,7 +66,7 @@ class Api private constructor(context: Context) {
             HttpUrl.Builder()
                 .scheme(scheme)
                 .host(serverHost)
-                .encodedPath(apiPath)
+                .port(port)
                 .build()
         }
 
