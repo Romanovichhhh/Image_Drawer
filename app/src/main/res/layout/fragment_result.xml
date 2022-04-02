@@ -3,21 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".ResultFragment">
+    tools:context=".ResultFragment"
+    android:background="@color/green_bg">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Hello Result" />
+        tools:text="Hello Result"
+        android:fontFamily="@font/montserrat_bold_700"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/imagesOriginal"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="8dp">
+    
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/imagesOriginal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    </androidx.cardview.widget.CardView>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="16dp"/>
 
 </LinearLayout>

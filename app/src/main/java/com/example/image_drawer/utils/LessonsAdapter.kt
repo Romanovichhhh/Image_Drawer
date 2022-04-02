@@ -3,7 +3,7 @@ package com.example.image_drawer.utils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.api.main.responses.ImagePreviewDto
-import com.example.image_drawer.databinding.ItemLessonsViewBinding
+import com.example.image_drawer.databinding.ItemLessonsPreviewBinding
 
 
 class SingleLessonItemVM(
@@ -26,7 +26,7 @@ class SingleLessonItemVM(
 
 private fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<SingleLessonItemVM> {
     val layoutInflater = LayoutInflater.from(parent.context)
-    val binding = ItemLessonsViewBinding.inflate(layoutInflater, parent, false)
+    val binding = ItemLessonsPreviewBinding.inflate(layoutInflater, parent, false)
     return ViewHolder(binding)
 }
 
