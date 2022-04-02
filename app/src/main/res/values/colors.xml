@@ -10,7 +10,8 @@
     <color name="grey">#FF999898</color>
 
 
-    <color name="green_bg">#2F4F4F</color>
-    <color name="orange">#F13E19</color>
+    <color name="background_main">#E6E6FA</color>
+    <color name="dark_violet">#9400D3</color>
+    <color name="indigo">#4B0082</color>
 
 </resources>

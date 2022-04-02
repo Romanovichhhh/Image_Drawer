@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import com.example.api.main.responses.ImagePreviewDto
 import com.example.image_drawer.databinding.ItemLessonsPreviewBinding
 
-
 class SingleLessonItemVM(
     data : ImagePreviewDto,
     val onLessonClick : (vm: SingleLessonItemVM) -> Unit
@@ -18,11 +17,7 @@ class SingleLessonItemVM(
 
     val title = data.title
 
-
 }
-
-
-
 
 private fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<SingleLessonItemVM> {
     val layoutInflater = LayoutInflater.from(parent.context)
