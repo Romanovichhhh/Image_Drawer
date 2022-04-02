@@ -1,59 +1,76 @@
 package com.example.image_drawer
 
+import android.app.Activity
+import android.content.ContentResolver
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [EnterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EnterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+var imageUri : Uri? = null
+    lateinit var img : ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_enter, container, false)
+        val view =  inflater.inflate(R.layout.fragment_enter, container, false)
+
+
+
+
+
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EnterFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EnterFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
+//    private fun openImageChooser() {
+//        Intent(Intent.ACTION_PICK).also {
+//            it.type = "image/*"
+//            val mimeTypes = arrayOf("image/jpeg", "image/png")
+//            it.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+//            startActivityForResult(it, REQUEST_CODE_PICK_IMAGE)
+//        }
+//    }
+//
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == Activity.RESULT_OK) {
+//            when (requestCode) {
+//                REQUEST_CODE_PICK_IMAGE -> {
+//                    imageUri = data?.data
+//                    //var a = imageUri?.let { contentResolver(context).getFileName(it) }
+//
+//                    img.setImageURI(imageUri)
+//                }
+//            }
+//        }
+//    }
+//
+//    fun ContentResolver.getFileName(fileUri: Uri): String {
+//        var name = ""
+//        val returnCursor = this.query(fileUri, null, null, null, null)
+//        if (returnCursor != null) {
+//            val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+//            returnCursor.moveToFirst()
+//            name = returnCursor.getString(nameIndex)
+//            returnCursor.close()
+//        }
+//        return name
+//    }
+
+//    companion object {
+//        const val REQUEST_CODE_PICK_IMAGE = 101
+//    }
 }
