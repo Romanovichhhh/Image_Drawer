@@ -1,42 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:context=".ResultFragment"
-    android:background="@color/green_bg">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Hello Result"
-        android:fontFamily="@font/montserrat_bold_700"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        />
+        <variable
+            name="vm"
+            type="com.example.image_drawer.ResultFragmentVM" />
 
-    <androidx.cardview.widget.CardView
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="24dp"
-        app:cardCornerRadius="8dp">
-    
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/imagesOriginal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/background_main"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context=".ResultFragment">
 
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/result_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/special_elite_regular"
+            android:paddingTop="2dp"
+            android:paddingBottom="10dp"
+            android:text="@{vm.title}"
+            android:textColor="@color/indigo"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hello Result" />
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="16dp"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="14dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/seek_bar"
+            app:layout_constraintTop_toBottomOf="@+id/result_title_tv"
+            tools:layout_editor_absoluteX="20dp">
 
-</LinearLayout>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/imagesOriginal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.cardview.widget.CardView>
+
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

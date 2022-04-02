@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 
-
-
 class ResultFragment : Fragment() {
 
+    private lateinit var viewModel: ResultFragmentVM
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,15 +19,15 @@ class ResultFragment : Fragment() {
         lateinit var viewPager: ViewPager2
         val args by navArgs<ResultFragmentArgs>()
 
-        val vm = ResultFragmentVM(args.id)
+        viewModel = ResultFragmentVM(args.id)
 
-        val view =  inflater.inflate(R.layout.fragment_result, container, false)
+        val view = inflater.inflate(R.layout.fragment_result, container, false)
 
         viewPager = view.findViewById(R.id.imagesOriginal)
 
-        viewPager.adapter = vm.adapter
+        viewPager.adapter = viewModel.adapter
 
-        vm.loadLesson()
+        viewModel.loadLesson()
 
         return view
     }
