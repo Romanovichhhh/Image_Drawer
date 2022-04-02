@@ -1,23 +1,24 @@
 package com.example.image_drawer
 
-import android.app.Activity
-import android.content.ContentResolver
-import android.content.Intent
-import android.net.Uri
+
 import android.os.Bundle
-import android.provider.OpenableColumns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class EnterFragment : Fragment() {
 
-var imageUri : Uri? = null
-    lateinit var img : ImageView
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var viewModel : EnterFragmentVM
+
+    private lateinit var navigationController : NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,14 +27,29 @@ var imageUri : Uri? = null
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_enter, container, false)
 
+        viewModel = EnterFragmentVM { id ->
+            navigateToResult(id)
+        }
 
+        navigationController = NavHostFragment.findNavController(this)
 
+        recyclerView = view.findViewById(R.id.lessons_recycler)
 
+        recyclerView.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = viewModel.adapter
+        }
 
+        viewModel.loadLessonPreviews()
 
         return view
     }
 
+
+    private fun navigateToResult(id : String)  {
+        val action = EnterFragmentDirections.actionEnterFragmentToResultFragment(id)
+        findNavController().navigate(action)
+    }
 
 //    private fun openImageChooser() {
 //        Intent(Intent.ACTION_PICK).also {

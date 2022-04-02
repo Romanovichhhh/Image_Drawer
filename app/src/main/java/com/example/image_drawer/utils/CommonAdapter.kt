@@ -5,7 +5,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
 
-class CommonAdapter<T : ItemVM>(
+open class CommonAdapter<T : ItemVM>(
     private val createViewHolderDelegate: (parent: ViewGroup, viewType: Int) -> ViewHolder<T>
     ) : RecyclerView.Adapter<ViewHolder<T>>() {
 

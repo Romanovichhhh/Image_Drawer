@@ -19,6 +19,11 @@
         android:name="com.example.image_drawer.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
+
+        <argument
+            android:name="id"
+            app:argType="string" />
+
         <action
             android:id="@+id/action_resultFragment_to_enterFragment"
             app:destination="@id/enterFragment" />
