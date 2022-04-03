@@ -18,22 +18,18 @@ class ResultFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
     ): View {
         val args by navArgs<ResultFragmentArgs>()
+        viewModel = ResultFragmentVM(args.id)
 
         binding = FragmentResultBinding.inflate(inflater, container, false)
-        viewModel = ResultFragmentVM(args.id)
         binding.vm = viewModel
-
-        viewModel = ResultFragmentVM(args.id)
 
         val viewPager = binding.imagesOriginalVp
         viewPager.adapter = viewModel.adapter
         viewModel.loadLesson()
 
         val seekBar = binding.seekBar
-        seekBar.max = 10
         seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
 

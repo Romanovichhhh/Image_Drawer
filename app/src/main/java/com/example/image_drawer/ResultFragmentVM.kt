@@ -13,7 +13,8 @@ class ResultFragmentVM(
 ) : BaseVM() {
 
     val adapter = ViewPagerAdapter()
-    val title = MutableLiveData("title")
+    val title = MutableLiveData<String>()
+    val seekBarMax = MutableLiveData<Int>()
 
     fun loadLesson() {
         Api.main.loadImagesById(id)
@@ -21,6 +22,7 @@ class ResultFragmentVM(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ imageList ->
                 title.postValue(imageList.title)
+                seekBarMax.postValue(imageList.images.size)
                 imageList.images.map {
                     LessonImageVM(it)
                 }.let {

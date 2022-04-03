@@ -57,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:paddingHorizontal="20dp"
+            android:max="@{vm.seekBarMax}"
             android:paddingTop="12dp"
             android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
