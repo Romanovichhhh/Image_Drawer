@@ -22,7 +22,9 @@ class ResultFragmentVM(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ imageList ->
                 title.postValue(imageList.title)
-                seekBarMax.postValue(imageList.images.size)
+                if (imageList.images.isNotEmpty()) {
+                    seekBarMax.postValue(imageList.images.size - 1)
+                }
                 imageList.images.map {
                     LessonImageVM(it)
                 }.let {
