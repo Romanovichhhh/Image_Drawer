@@ -35,13 +35,37 @@
             tools:text="Hello Result" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/gif_cv"
+            android:layout_width="match_parent"
+            android:layout_height="278dp"
+            app:cardCornerRadius="8dp"
+            android:layout_marginHorizontal="14dp"
+            app:layout_constraintTop_toBottomOf="@+id/result_title_tv">
+
+            <ProgressBar
+                android:id="@+id/gif_progress_bar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/gif_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="14dp"
             app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toTopOf="@+id/seek_bar"
-            app:layout_constraintTop_toBottomOf="@+id/result_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/gif_cv"
             tools:layout_editor_absoluteX="20dp">
 
             <androidx.viewpager2.widget.ViewPager2
@@ -56,8 +80,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:paddingHorizontal="20dp"
             android:max="@{vm.seekBarMax}"
+            android:paddingHorizontal="20dp"
             android:paddingTop="12dp"
             android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"

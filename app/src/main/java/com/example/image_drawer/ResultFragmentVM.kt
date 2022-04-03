@@ -15,6 +15,7 @@ class ResultFragmentVM(
     val adapter = ViewPagerAdapter()
     val title = MutableLiveData<String>()
     val seekBarMax = MutableLiveData<Int>()
+    val gitUrl = MutableLiveData<String>()
 
     fun loadLesson() {
         Api.main.loadImagesById(id)
@@ -30,6 +31,17 @@ class ResultFragmentVM(
                 }.let {
                     adapter.setItems(it)
                 }
+            }, {
+                it.printStackTrace()
+            }).disposeOnCleared()
+    }
+
+    fun loadGif() {
+        Api.main.loadGifById(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                gitUrl.postValue(it.url)
             }, {
                 it.printStackTrace()
             }).disposeOnCleared()

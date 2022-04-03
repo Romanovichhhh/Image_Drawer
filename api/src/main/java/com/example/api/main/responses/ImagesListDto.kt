@@ -8,3 +8,8 @@ data class ImagesListDto(
     @SerializedName("images")
     val images: List<String>
 )
+
+data class gifDto(
+    @SerializedName("image")
+    val url: String,
+)

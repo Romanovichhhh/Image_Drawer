@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.image_drawer.databinding.FragmentResultBinding
+import com.example.image_drawer.utils.convertMediaUrl
 
 class ResultFragment : Fragment() {
 
@@ -26,9 +29,10 @@ class ResultFragment : Fragment() {
         binding = FragmentResultBinding.inflate(inflater, container, false)
         binding.vm = viewModel
 
-        val viewPager: ViewPager2 = binding.imagesOriginalVp
-        viewPager.adapter = viewModel.adapter
+
+        binding.imagesOriginalVp.adapter = viewModel.adapter
         viewModel.loadLesson()
+        viewModel.loadGif()
 
         viewModel.title.observe(viewLifecycleOwner) {
             binding.resultTitleTv.text = it
@@ -43,19 +47,34 @@ class ResultFragment : Fragment() {
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                viewPager.currentItem = progress
+                binding.imagesOriginalVp.currentItem = progress
             }
         })
 
-        val seekBar = binding.seekBar
-        binding.imagesOriginalVp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.imagesOriginalVp.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                seekBar.progress = position
+                binding.seekBar.progress = position
             }
         })
+
+//        setGifVisibility(false)
+        viewModel.gitUrl.observe(viewLifecycleOwner) { str ->
+//            if (!str.isNullOrEmpty()) setGifVisibility(true)
+            context?.let {
+                Glide.with(it)
+                    .load(convertMediaUrl(str))
+                    .into(binding.gifImage)
+            }
+        }
 
         return binding.root
     }
+
+//    private fun setGifVisibility(isVisible: Boolean) {
+//        binding.gifImage.isVisible = isVisible
+//        binding.gifProgressBar.isVisible = !isVisible
+//    }
 
 }

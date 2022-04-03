@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.api.core.Api
 
-private fun convertMediaUrl(url: String): String {
+fun convertMediaUrl(url: String): String {
     return if (url.startsWith("http")) {
         url
     } else {
