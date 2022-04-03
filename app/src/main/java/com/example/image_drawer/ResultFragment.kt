@@ -7,29 +7,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
+import com.example.image_drawer.databinding.FragmentResultBinding
 
 class ResultFragment : Fragment() {
 
     private lateinit var viewModel: ResultFragmentVM
+    private lateinit var binding: FragmentResultBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        lateinit var viewPager: ViewPager2
+    ): View {
         val args by navArgs<ResultFragmentArgs>()
 
         viewModel = ResultFragmentVM(args.id)
 
-        val view = inflater.inflate(R.layout.fragment_result, container, false)
+        binding = FragmentResultBinding.inflate(inflater, container, false)
+        binding.vm = viewModel
 
-        viewPager = view.findViewById(R.id.imagesOriginal)
-
+        val viewPager: ViewPager2 = binding.imagesOriginalVp
         viewPager.adapter = viewModel.adapter
-
         viewModel.loadLesson()
 
-        return view
+        return binding.root
     }
 
 }
