@@ -3,4 +3,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="preview_top">Hello my friend. Try this. Only two colors - black and white</string>
     <string name="preview_bottom">created with genetic algorithm</string>
+    <string name="image_uploaded">Image uploaded successful</string>
 </resources>
