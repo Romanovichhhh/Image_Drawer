@@ -8,32 +8,32 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import androidx.viewpager2.widget.ViewPager2
-
+import com.example.image_drawer.databinding.FragmentResultBinding
 
 class ResultFragment : Fragment() {
 
     private lateinit var viewModel: ResultFragmentVM
-    lateinit var viewPager: ViewPager2
-    lateinit var seekBar : SeekBar
+    private lateinit var binding: FragmentResultBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
 
+    ): View {
         val args by navArgs<ResultFragmentArgs>()
+
+        binding = FragmentResultBinding.inflate(inflater, container, false)
+        viewModel = ResultFragmentVM(args.id)
+        binding.vm = viewModel
 
         viewModel = ResultFragmentVM(args.id)
 
-        val view = inflater.inflate(R.layout.fragment_result, container, false)
-
-        viewPager = view.findViewById(R.id.imagesOriginal)
-        seekBar = view.findViewById(R.id.seek_bar)
+        val viewPager = binding.imagesOriginalVp
         viewPager.adapter = viewModel.adapter
+        viewModel.loadLesson()
 
+        val seekBar = binding.seekBar
         seekBar.max = 10
-
         seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
 
@@ -44,11 +44,7 @@ class ResultFragment : Fragment() {
             }
         })
 
-
-
-        viewModel.loadLesson()
-
-        return view
+        return binding.root
     }
 
 }

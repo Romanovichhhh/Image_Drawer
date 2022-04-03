@@ -28,7 +28,7 @@
             android:paddingBottom="10dp"
             android:text="@{vm.title}"
             android:textColor="@color/indigo"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -45,7 +45,7 @@
             tools:layout_editor_absoluteX="20dp">
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/imagesOriginal"
+                android:id="@+id/images_original_vp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
